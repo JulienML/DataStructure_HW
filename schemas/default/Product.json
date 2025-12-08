@@ -16,40 +16,14 @@
     },
     "brand": { "type": "string" },
     "description": { "type": "string" },
-    "image_url": { "type": "string" },
-
-    "categories": {
-      "type": "array",
-      "items": { "type": "string" }
-    },
-
-    "supplier": {
-      "type": "object",
-      "properties": {
-        "IDS": { "type": "number" },
-        "name": { "type": "string" },
-        "SIRET": { "type": "string" },
-        "headOffice": { "type": "string" },
-        "revenue": { "type": "number" }
-      },
-      "required": [
-        "IDS",
-        "name",
-        "SIRET",
-        "headOffice",
-        "revenue"
-      ]
-    }
+    "image_url": { "type": "string" }
   },
-
   "required": [
     "IDP",
     "name",
     "price",
     "brand",
     "description",
-    "image_url",
-    "categories",
-    "supplier"
+    "image_url"
   ]
 }

@@ -1,8 +1,22 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
   "type": "object",
   "properties": {
-    "IDP": { "type": "string" },
+    "IDP": { "type": "number" },
     "name": { "type": "string" },
+    "price": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" },
+        "currency": { "type": "string" },
+        "VAT": { "type": "number" }
+      },
+      "required": ["value", "currency", "VAT"]
+    },
+    "brand": { "type": "string" },
+    "description": { "type": "string" },
+    "image_url": { "type": "string" },
 
     "categories": {
       "type": "array",
@@ -12,22 +26,52 @@
     "supplier": {
       "type": "object",
       "properties": {
-        "IDS": { "type": "string" }
+        "IDS": { "type": "number" },
+        "name": { "type": "string" },
+        "SIRET": { "type": "string" },
+        "headOffice": { "type": "string" },
+        "revenue": { "type": "number" }
       },
-      "required": ["IDS"]
-    },
-
-    "orderlines": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "IDC": { "type": "string" },
-          "quantity": { "type": "number" }
-        },
-        "required": ["IDC", "quantity"]
-      }
+      "required": [
+        "IDS",
+        "name",
+        "SIRET",
+        "headOffice",
+        "revenue"
+      ]
     }
   },
-  "required": ["IDP", "name", "categories", "supplier", "orderlines"]
+
+  "orderLines": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "IDC": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" },
+        "quantity": { "type": "number" },
+        "deliveryDate": { "type": "string", "format": "date-time" },
+        "comment": { "type": "string" },
+        "grade": { "type": "number" }
+      },
+      "required": [
+        "IDP",
+        "IDC",
+        "date",
+        "quantity",
+        "deliveryDate"
+      ]
+    }
+  },
+
+  "required": [
+    "IDP",
+    "name",
+    "price",
+    "brand",
+    "description",
+    "image_url",
+    "categories",
+    "supplier"
+  ]
 }

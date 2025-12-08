@@ -1,9 +1,22 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
   "type": "object",
   "properties": {
-    "IDP": { "type": "string" },
+    "IDP": { "type": "number" },
     "name": { "type": "string" },
+    "price": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" },
+        "currency": { "type": "string" },
+        "VAT": { "type": "number" }
+      },
+      "required": ["value", "currency", "VAT"]
+    },
     "brand": { "type": "string" },
+    "description": { "type": "string" },
+    "image_url": { "type": "string" },
 
     "categories": {
       "type": "array",
@@ -12,21 +25,49 @@
 
     "supplier": {
       "type": "object",
-      "properties": { "IDS": { "type": "string" } },
-      "required": ["IDS"]
+      "properties": {
+        "IDS": { "type": "number" },
+        "name": { "type": "string" },
+        "SIRET": { "type": "string" },
+        "headOffice": { "type": "string" },
+        "revenue": { "type": "number" }
+      },
+      "required": [
+        "IDS",
+        "name",
+        "SIRET",
+        "headOffice",
+        "revenue"
+      ]
     },
 
-    "stock": {
+    "stocks": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "IDW": { "type": "string" },
-          "quantity": { "type": "number" }
+          "IDW": { "type": "number" },
+          "quantity": { "type": "number" },
+          "location": { "type": "string" }
         },
-        "required": ["IDW", "quantity"]
+        "required": [
+          "IDW",
+          "quantity",
+          "location"
+        ]
       }
     }
   },
-  "required": ["IDP", "name", "brand", "categories", "supplier", "stock"]
+
+  "required": [
+    "IDP",
+    "name",
+    "price",
+    "brand",
+    "description",
+    "image_url",
+    "categories",
+    "supplier",
+    "stocks"
+  ]
 }

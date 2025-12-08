@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Supplier",
+  "type": "object",
+  "properties": {
+    "IDS": { "type": "number" },
+    "name": { "type": "string" },
+    "SIRET": { "type": "string" },
+    "headOffice": { "type": "string" },
+    "revenue": { "type": "number" }
+  },
+  "required": [
+    "IDS",
+    "name",
+    "SIRET",
+    "headOffice",
+    "revenue"
+  ]
+}
