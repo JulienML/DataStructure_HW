@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "IDW": { "type": "string" },
+    "quantity": { "type": "number" },
+
+    "product": {
+      "type": "object",
+      "properties": {
+        "IDP": { "type": "string" },
+        "brand": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "supplier": {
+          "type": "object",
+          "properties": {
+            "IDS": { "type": "string" }
+          },
+          "required": ["IDS"]
+        }
+      },
+      "required": ["IDP", "brand", "categories", "supplier"]
+    }
+  },
+  "required": ["IDW", "quantity", "product"]
+}

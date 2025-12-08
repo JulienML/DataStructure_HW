@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "OrderLine",
+  "properties": {
+    "IDC": { "type": "string" },
+    "IDP": { "type": "string" },
+    "IDW": { "type": "string" },
+    "date": { "type": "string" },
+    "quantity": { "type": "number" },
+    "deliveryDate": { "type": "string" },
+    "comment": { "type": "string" },
+    "grade": { "type": "number" }
+  },
+  "required": [
+    "IDC", "IDP", "IDW",
+    "date", "quantity",
+    "deliveryDate", "comment",
+    "grade"
+  ]
+}

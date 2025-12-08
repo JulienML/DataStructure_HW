@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "title": "Warehouse",
+  "properties": {
+    "IDW": { "type": "string" },
+    "address": { "type": "string" },
+    "capacity": { "type": "number" }
+  },
+  "required": ["IDW", "address", "capacity"]
+}

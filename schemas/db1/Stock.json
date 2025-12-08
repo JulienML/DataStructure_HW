@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "IDP": { "type": "string" },
+    "IDW": { "type": "string" },
+    "quantity": { "type": "number" }
+  },
+  "required": ["IDP", "IDW", "quantity"]
+}

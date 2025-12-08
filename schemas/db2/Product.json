@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "IDP": { "type": "string" },
+    "name": { "type": "string" },
+    "brand": { "type": "string" },
+
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+
+    "supplier": {
+      "type": "object",
+      "properties": { "IDS": { "type": "string" } },
+      "required": ["IDS"]
+    },
+
+    "stock": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "IDW": { "type": "string" },
+          "quantity": { "type": "number" }
+        },
+        "required": ["IDW", "quantity"]
+      }
+    }
+  },
+  "required": ["IDP", "name", "brand", "categories", "supplier", "stock"]
+}
