@@ -31,8 +31,10 @@ def compute_sharding_distribution(collection_name: str, sharding_key: str):
         stat += "s"
     nb_distinct_values = STATISTICS.get(stat, nb_values)
 
+    nb_servers_used = min(NB_SERVERS, nb_distinct_values)
+
     return {
-        "docs_per_server": nb_values / min(NB_SERVERS, nb_distinct_values),
-        "distinct_values_per_server": nb_distinct_values / min(NB_SERVERS, nb_distinct_values),
-        "nb_servers_used": min(NB_SERVERS, nb_distinct_values)
+        "docs_per_server": nb_values / nb_servers_used,
+        "distinct_values_per_server": nb_distinct_values / nb_servers_used,
+        "nb_servers_used": nb_servers_used
     }
