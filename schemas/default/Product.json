@@ -5,17 +5,9 @@
   "properties": {
     "IDP": { "type": "number" },
     "name": { "type": "string" },
-    "price": {
-      "type": "object",
-      "properties": {
-        "value": { "type": "number" },
-        "currency": { "type": "string" },
-        "VAT": { "type": "number" }
-      },
-      "required": ["value", "currency", "VAT"]
-    },
+    "price": { "type": "number"},
     "brand": { "type": "string" },
-    "description": { "type": "string" },
+    "description": { "type": "string", "format": "longstring" },
     "image_url": { "type": "string" }
   },
   "required": [

@@ -3,12 +3,12 @@
   "title": "Client",
   "type": "object",
   "properties": {
-    "IDC": { "type": "number" },
+    "IDC": { "type": "number"},
     "ln": { "type": "string" },
     "fn": { "type": "string" },
     "address": { "type": "string" },
     "nationality": { "type": "string" },
-    "birthDate": { "type": "string" },
+    "birthDate": { "type": "string", "format": "date" },
     "email": { "type": "string" }
   },
   "required": [

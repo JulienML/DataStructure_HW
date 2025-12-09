@@ -1,21 +1,52 @@
-KEY_SIZES = {
-    "number": 8,
-    "integer": 8,
-    "string": 80,
-    "date": 20,
-    "longstring": 200,
-    "object": 12,
-    "array": 12
-}
+from loader import load_schemas_from_folder
 
-def estimate_document_size(schema):
-    size = 0
-    for field in schema.fields:
-        size += KEY_SIZES.get(field.ftype, 12)  
-    return size
+from settings import NB_DOCS, KEY_SIZE, VALUE_SIZES, STATISTICS
+from pathlib import Path
 
-def estimate_collection_size(doc_size, nb_documents):
-    return doc_size * nb_documents
+def estimate_doc_byte_size(schema: dict) -> int:
+    total_size = 0
+    properties = schema.get("properties", {})
+    for field_name, field_props in properties.items():
+        ftype = field_props.get("type")
+        total_size += KEY_SIZE  # Size of the key
 
-def gb(x):
-    return x / (1024**3)
+        if ftype in VALUE_SIZES:
+            if ftype == "string" and field_props.get("format"): # Handle string formats (date and longstring)
+                total_size += VALUE_SIZES[field_props["format"]]
+            else:
+                total_size += VALUE_SIZES[ftype]
+
+        elif ftype == "object":
+            total_size += estimate_doc_byte_size(field_props)
+
+        elif ftype == "array":
+            nb_items = STATISTICS.get(f"avg_{field_name}", 1)
+            items = field_props.get("items", {})
+            total_size += estimate_doc_byte_size(items) * nb_items
+
+    return total_size
+
+def compute_db_size(schemas_folder_path: str | Path) -> dict:
+    if not isinstance(schemas_folder_path, Path):
+        schemas_folder_path = Path(schemas_folder_path)
+
+    results = {}
+    
+    total_db_size = 0
+    schemas = load_schemas_from_folder(schemas_folder_path)
+
+    for coll_name, schema in schemas.items():
+        results[coll_name] = {}
+        doc_size = estimate_doc_byte_size(schema)
+        results[coll_name]['document_byte_size'] = doc_size
+        
+        nb_docs = NB_DOCS.get(coll_name, 0)
+        coll_size = doc_size * nb_docs
+
+        results[coll_name]['collection_byte_size'] = coll_size
+
+        total_db_size += coll_size
+
+    results["total_database_byte_size"] = total_db_size
+    
+    return results

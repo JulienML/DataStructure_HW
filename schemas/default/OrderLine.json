@@ -5,10 +5,10 @@
   "properties": {
     "IDP": { "type": "number" },
     "IDC": { "type": "number" },
-    "date": { "type": "string", "format": "date-time" },
+    "date": { "type": "string", "format": "date" },
     "quantity": { "type": "number" },
-    "deliveryDate": { "type": "string", "format": "date-time" },
-    "comment": { "type": "string" },
+    "deliveryDate": { "type": "string", "format": "date" },
+    "comment": { "type": "string", "format": "longstring" },
     "grade": { "type": "number" }
   },
   "required": [
