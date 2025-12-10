@@ -39,31 +39,32 @@ with tab1:
     )
     
     # Automatically compute database size
-    with st.spinner("Computing database size..."):
-        results = compute_db_size(f"schemas/{selected_schema}")
-        
-        # Display results in a structured way
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.subheader("Document Sizes")
-            for collection, sizes in results.items():
-                if collection != "total_database_byte_size" and isinstance(sizes, dict):
-                    doc_size = sizes.get("document_byte_size", 0)
-                    st.metric(f"{collection}", f"{doc_size:,} B")
-        
-        with col2:
-            st.subheader("Collection Sizes")
-            for collection, sizes in results.items():
-                if collection != "total_database_byte_size" and isinstance(sizes, dict):
-                    coll_size = sizes.get("collection_byte_size", 0)
-                    if coll_size > 10**6:
-                        st.metric(f"{collection}", f"{coll_size/10**9:.3f} GB")
-                    else:
-                        st.metric(f"{collection}", f"{coll_size} B")
-        
-        total_size = results.get("total_database_byte_size", 0)
-        st.subheader(f"Total Database Size : {total_size/10**9:.3f} GB")
+    if st.button("Compute Database Size", type="primary"):
+        with st.spinner("Computing database size..."):
+            results = compute_db_size(f"schemas/{selected_schema}")
+            
+            # Display results in a structured way
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.subheader("Document Sizes")
+                for collection, sizes in results.items():
+                    if collection != "total_database_byte_size" and isinstance(sizes, dict):
+                        doc_size = sizes.get("document_byte_size", 0)
+                        st.metric(f"{collection}", f"{doc_size:,} B")
+            
+            with col2:
+                st.subheader("Collection Sizes")
+                for collection, sizes in results.items():
+                    if collection != "total_database_byte_size" and isinstance(sizes, dict):
+                        coll_size = sizes.get("collection_byte_size", 0)
+                        if coll_size > 10**6:
+                            st.metric(f"{collection}", f"{coll_size/10**9:.3f} GB")
+                        else:
+                            st.metric(f"{collection}", f"{coll_size} B")
+            
+            total_size = results.get("total_database_byte_size", 0)
+            st.subheader(f"Total Database Size : {total_size/10**9:.3f} GB")
 
 # Sharding Distribution Tab
 with tab2:
