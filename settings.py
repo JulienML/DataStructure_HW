@@ -28,3 +28,9 @@ STATISTICS = {
     "distinct_brands": 5000,
     "distinct_dates": 365
 }
+
+COST_INFOS = {
+    "bandwidth": 10**6, # 1 MB/s
+    "carbon_footprint": 1000 * 10**-9, # 1000 gCO2/GB
+    "price": 10**-10 # $0.0000000001/B ($0.10/GB)
+}
