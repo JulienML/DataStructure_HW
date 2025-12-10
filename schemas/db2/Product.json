@@ -1,32 +1,70 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
   "type": "object",
   "properties": {
-    "IDP": { "type": "string" },
+    "IDP": { "type": "number" },
     "name": { "type": "string" },
+    "price": { "type": "number" },
     "brand": { "type": "string" },
+    "description": { "type": "string", "format": "longstring"},
+    "image_url": { "type": "string" },
 
     "categories": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { 
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" }
+        }
+      }
     },
 
     "supplier": {
       "type": "object",
-      "properties": { "IDS": { "type": "string" } },
-      "required": ["IDS"]
+      "properties": {
+        "IDS": { "type": "number" },
+        "name": { "type": "string" },
+        "SIRET": { "type": "number" },
+        "headOffice": { "type": "string" },
+        "revenue": { "type": "number" }
+      },
+      "required": [
+        "IDS",
+        "name",
+        "SIRET",
+        "headOffice",
+        "revenue"
+      ]
     },
 
-    "stock": {
+    "stocks": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "IDW": { "type": "string" },
-          "quantity": { "type": "number" }
+          "IDW": { "type": "number" },
+          "quantity": { "type": "number" },
+          "location": { "type": "string" }
         },
-        "required": ["IDW", "quantity"]
+        "required": [
+          "IDW",
+          "quantity",
+          "location"
+        ]
       }
     }
   },
-  "required": ["IDP", "name", "brand", "categories", "supplier", "stock"]
+
+  "required": [
+    "IDP",
+    "name",
+    "price",
+    "brand",
+    "description",
+    "image_url",
+    "categories",
+    "supplier",
+    "stocks"
+  ]
 }

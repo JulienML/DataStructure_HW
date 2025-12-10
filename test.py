@@ -1,30 +1,25 @@
-from loader import load_json_schema, load_statistics
-from model import CollectionSchema
-from size import estimate_document_size, estimate_collection_size, gb
-from sharding import sharding_distribution
-
-def run_test(schema_path, collection_name, nb_documents, distinct_key_values):
-    stats = load_statistics()
-
-    js = load_json_schema(schema_path)
-    schema = CollectionSchema(collection_name, js)
-
-    doc_size = estimate_document_size(schema)
-    coll_size = estimate_collection_size(doc_size, nb_documents)
-
-    print("=== SIZE RESULTS ===")
-    print("Document size (Bytes):", doc_size)
-    print("Collection size (GB):", gb(coll_size))
-
-    shard = sharding_distribution(nb_documents, distinct_key_values, stats["servers"])
-    print("\n=== SHARDING RESULTS ===")
-    print(shard)
+from filter import compute_filter_query_costs, compute_join_query_costs
 
 
-if __name__ == "__main__":
-    run_test(
-        schema_path="schemas/Product.json",
-        collection_name="Product",
-        nb_documents=100000,
-        distinct_key_values=5000  
-    )
+result = compute_filter_query_costs(
+    database="db1",
+    collection="Stock",
+    output_keys=["quantity", "location"],
+    filter_keys=["IDP", "IDW"],
+    sharding=True,
+    sharding_key="IDP",
+)
+
+print(result)
+
+result2 = compute_join_query_costs(
+    database="db1",
+    collections=["Product", "Stock"],
+    output_keys={"Stock": ["IDW", "quantity"], "Product": ["name", "price"]},
+    join_keys={"Stock": "IDP", "Product": "IDP"},
+    filter_keys={"Stock": [], "Product": ["brand"]},
+    sharding={"Stock": True, "Product": True},
+    sharding_keys={"Stock": "IDP", "Product": "brand"},
+)
+
+print(result2)

@@ -1,28 +1,70 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrderLine",
   "type": "object",
   "properties": {
-    "IDW": { "type": "string" },
-    "quantity": { "type": "number" },
-
     "product": {
       "type": "object",
       "properties": {
-        "IDP": { "type": "string" },
+        "IDP": { "type": "number" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
         "brand": { "type": "string" },
+        "description": { "type": "string", "format": "longstring"},
+        "image_url": { "type": "string" },
+
         "categories": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": { 
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" }
+            }
+          }
         },
+
         "supplier": {
           "type": "object",
           "properties": {
-            "IDS": { "type": "string" }
+            "IDS": { "type": "number" },
+            "name": { "type": "string" },
+            "SIRET": { "type": "number" },
+            "headOffice": { "type": "string" },
+            "revenue": { "type": "number" }
           },
-          "required": ["IDS"]
+          "required": [
+            "IDS",
+            "name",
+            "SIRET",
+            "headOffice",
+            "revenue"
+          ]
         }
       },
-      "required": ["IDP", "brand", "categories", "supplier"]
-    }
+
+      "required": [
+        "IDP",
+        "name",
+        "price",
+        "brand",
+        "description",
+        "image_url",
+        "categories",
+        "supplier"
+      ]
+    },
+    "IDC": { "type": "number" },
+    "date": { "type": "string", "format": "date" },
+    "quantity": { "type": "number" },
+    "deliveryDate": { "type": "string", "format": "date" },
+    "comment": { "type": "string", "format": "longstring" },
+    "grade": { "type": "number" }
   },
-  "required": ["IDW", "quantity", "product"]
+  "required": [
+    "product",
+    "IDC",
+    "date",
+    "quantity",
+    "deliveryDate"
+  ]
 }

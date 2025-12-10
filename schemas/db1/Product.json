@@ -1,21 +1,52 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product",
   "type": "object",
   "properties": {
-    "IDP": { "type": "string" },
+    "IDP": { "type": "number" },
     "name": { "type": "string" },
+    "price": { "type": "number" },
     "brand": { "type": "string" },
+    "description": { "type": "string", "format": "longstring"},
+    "image_url": { "type": "string" },
+
     "categories": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { 
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" }
+        }
+      }
     },
+
     "supplier": {
       "type": "object",
       "properties": {
-        "IDS": { "type": "string" },
-        "name": { "type": "string" }
+        "IDS": { "type": "number" },
+        "name": { "type": "string" },
+        "SIRET": { "type": "number" },
+        "headOffice": { "type": "string" },
+        "revenue": { "type": "number" }
       },
-      "required": ["IDS", "name"]
+      "required": [
+        "IDS",
+        "name",
+        "SIRET",
+        "headOffice",
+        "revenue"
+      ]
     }
   },
-  "required": ["IDP", "name", "brand", "categories", "supplier"]
+
+  "required": [
+    "IDP",
+    "name",
+    "price",
+    "brand",
+    "description",
+    "image_url",
+    "categories",
+    "supplier"
+  ]
 }

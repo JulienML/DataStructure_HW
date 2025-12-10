@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Warehouse",
+  "type": "object",
+  "properties": {
+    "IDW": { "type": "number" },
+    "address": { "type": "string" },
+    "capacity": { "type": "number" }
+  },
+  "required": [
+    "IDW",
+    "address",
+    "capacity"
+  ]
+}
