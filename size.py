@@ -3,8 +3,10 @@ from loader import load_schemas_from_folder
 from settings import NB_DOCS, KEY_SIZE, VALUE_SIZES, STATISTICS
 from pathlib import Path
 
-def estimate_doc_size(schema: dict) -> int:
+def estimate_doc_size(schema: dict, table_title: str = '') -> int:
     total_size = 0
+    if table_title == '':
+        table_title = schema.get("title", table_title)
     properties = schema.get("properties", {})
     for field_name, field_props in properties.items():        
         ftype = field_props.get("type")
@@ -20,7 +22,7 @@ def estimate_doc_size(schema: dict) -> int:
             total_size += estimate_doc_size(field_props)
 
         elif ftype == "array":
-            nb_items = STATISTICS.get(f"avg_{field_name}", 1)
+            nb_items = STATISTICS.get(f"avg_{field_name}_by_{table_title.lower()}", 1)
             items = field_props.get("items", {})
             total_size += estimate_doc_size(items) * nb_items
 

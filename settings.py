@@ -18,9 +18,9 @@ VALUE_SIZES = {
 }
 
 STATISTICS = {
-    "avg_categories": 2,
-    "avg_orderlines": 4*10**4,
-    "avg_stocks": 200,
+    "avg_categories_by_product": 2,
+    "avg_orderlines_by_product": 4*10**4,
+    "avg_stocks_by_product": 200,
 
     "distinct_IDPs": 10**5,
     "distinct_IDWs": 200,

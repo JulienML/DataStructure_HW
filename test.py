@@ -1,6 +1,5 @@
 from filter import compute_filter_query_costs, compute_join_query_costs
 
-
 result = compute_filter_query_costs(
     database="db1",
     collection="Stock",
