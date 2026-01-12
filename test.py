@@ -1,4 +1,4 @@
-from filter import compute_filter_query_costs, compute_join_query_costs, compute_aggregate_query_costs_v2
+from filter import compute_filter_query_costs, compute_join_query_costs
 from pprint import pprint
 from aggregate import compute_aggregate_query_costs
 
@@ -101,7 +101,7 @@ result4 = compute_aggregate_query_costs(
     groupby_keys={"OrderLine": ["IDP"], "Product": []},
     aggregate_keys={"OrderLine": ["quantity"], "Product": []},  # SUM(O.quantity)
     sharding={"OrderLine": True, "Product": True},
-    sharding_keys={"OrderLine": "IDC", "Product": "IDP"},
+    sharding_keys={"OrderLine": "IDP", "Product": "IDP"},
     limit=1,
     detailed=False  # Set to True for detailed phase breakdown
 )
