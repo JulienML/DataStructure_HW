@@ -21,6 +21,8 @@ STATISTICS = {
     "avg_categories_by_product": 2,
     "avg_orderlines_by_product": 4*10**4,
     "avg_stocks_by_product": 200,
+    "avg_orderlines_by_client": 100,
+    "avg_products_by_client": 20,
 
     "distinct_IDPs": 10**5,
     "distinct_IDWs": 200,

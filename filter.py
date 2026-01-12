@@ -2,7 +2,7 @@ from loader import load_schemas_from_folder
 from sharding import compute_sharding_distribution
 from size import get_all_properties, get_custom_doc_size
 
-from settings import NB_DOCS, NB_SERVERS, STATISTICS, COST_INFOS
+from settings import NB_DOCS, NB_SERVERS, STATISTICS, COST_INFOS, KEY_SIZE, VALUE_SIZES
 
 from pathlib import Path
 
