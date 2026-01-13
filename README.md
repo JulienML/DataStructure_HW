@@ -12,6 +12,8 @@ pip install streamlit
 
 ## Running the Application
 
+### Option 1: Using Streamlit
+
 To start the Streamlit application, run:
 
 ```bash
@@ -19,6 +21,17 @@ streamlit run app.py
 ```
 
 The application will automatically open in your default web browser at `http://localhost:8501`.
+
+### Option 2: Using the `test.py` Script
+
+You can also run the `test.py` script to execute predefined tests:
+
+```bash
+python test.py
+```
+
+The results will be printed to the console.
+You can modify the `test.py` file to test different queries and database configurations.
 
 ## Features
 
