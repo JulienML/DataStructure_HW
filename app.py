@@ -5,11 +5,13 @@ st.text("Julien DE VOS - Lorrain MORLET - Aymeric MARTIN")
 
 homework1 = st.Page("./streamlit_pages/homework1.py", title="Homework 1", default=True)
 homework2 = st.Page("./streamlit_pages/homework2.py", title="Homework 2")
+homework3 = st.Page("./streamlit_pages/homework3.py", title="Homework 3")
 
 pg = st.navigation(
     [
         homework1,
-        homework2
+        homework2,
+        homework3,
     ]
 )
 pg.run()

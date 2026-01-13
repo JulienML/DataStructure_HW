@@ -117,7 +117,7 @@ def compute_aggregate_query_costs(
         shuffle_doc_size = 0
         shuffles_data_size = 0
     else:
-        nb_shuffles = nb_servers_checked * (nb_output_docs - 1)
+        nb_shuffles = nb_output_docs * (nb_servers_checked - 1)
         # Estimate size of grouped documents
         schema = schemas[inner_collection]
         shuffle_doc_size = get_custom_doc_size(schema, keys=set(inner_output_keys))
@@ -135,7 +135,7 @@ def compute_aggregate_query_costs(
     output_data_size = output_doc_size * nb_output_docs
 
     # Compute costs
-    total_data_size = scanned_data_size + output_data_size
+    total_data_size = scanned_data_size + output_data_size + shuffles_data_size
     time_cost = total_data_size / COST_INFOS["bandwidth"]
     carbon_footprint = total_data_size * COST_INFOS["carbon_footprint"]
     price_cost = total_data_size * COST_INFOS["price"]

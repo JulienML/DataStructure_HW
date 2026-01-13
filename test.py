@@ -60,7 +60,7 @@ FROM Product P JOIN (
 ORDER BY OL.NB DESC
 LIMIT 100;
 
-With Product sharded on brand and OrderLine sharded on IDP
+With Product sharded on brand and OrderLine sharded on IDC
 """
 
 result3 = compute_aggregate_query_costs(
@@ -71,7 +71,7 @@ result3 = compute_aggregate_query_costs(
     group_by_keys={"Product": None, "OrderLine": "IDP"},
     filter_keys={"Product": [], "OrderLine": []},
     sharding={"Product": True, "OrderLine": True},
-    sharding_keys={"Product": "brand", "OrderLine": "IDP"},
+    sharding_keys={"Product": "IDP", "OrderLine": "IDC"},
     limit=100
 )
 
