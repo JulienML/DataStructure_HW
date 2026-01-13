@@ -1,4 +1,4 @@
-from loader import load_schemas_from_folder, get_all_properties
+from .loader import load_schemas_from_folder, get_all_properties
 
 from settings import NB_DOCS, KEY_SIZE, VALUE_SIZES, STATISTICS
 from pathlib import Path
