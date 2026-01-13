@@ -31,8 +31,15 @@ STATISTICS = {
     "distinct_dates": 365
 }
 
+PRIMARY_KEYS_TABLE = {
+    "IDP": "Product",
+    "IDW": "Warehouse",
+    "IDC": "Client",
+    "IDS": "Supplier",
+}
+
 COST_INFOS = {
-    "bandwidth": 10**6, # 1 MB/s
-    "carbon_footprint": 1000 * 10**-9, # 1000 gCO2/GB
-    "price": 10**-10 # $0.0000000001/B ($0.10/GB)
+    "bandwidth": 100*10**6, # 100 MB/s
+    "carbon_footprint": 0.011*10**-9, # 0.011 kgCO2eq/GB
+    "price": 0.011*10**-9 # 0.011€/GB
 }

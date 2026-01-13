@@ -1,6 +1,8 @@
-from settings import STATISTICS, NB_DOCS, NB_SERVERS
-from loader import load_schemas_from_folder
 from pathlib import Path
+
+from .loader import load_schemas_from_folder
+
+from settings import STATISTICS, NB_DOCS, NB_SERVERS
 
 def compute_sharding_distribution(collection_name: str, sharding_key: str):
     # Load the default schemas to check if sharding_key is valid

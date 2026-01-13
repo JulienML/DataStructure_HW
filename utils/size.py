@@ -1,4 +1,4 @@
-from loader import load_schemas_from_folder
+from loader import load_schemas_from_folder, get_all_properties
 
 from settings import NB_DOCS, KEY_SIZE, VALUE_SIZES, STATISTICS
 from pathlib import Path
@@ -52,32 +52,6 @@ def compute_db_size(schemas_folder_path: str | Path) -> dict:
     results["total_database_byte_size"] = total_db_size
     
     return results
-
-def get_all_properties(schema:dict) -> list[str]:
-    properties_dict = {}
-
-    properties = schema.get("properties", {})
-    for field_name, field_props in properties.items():
-        ftype = field_props.get("type")
-        if ftype == "object":
-            nested_props = get_all_properties(field_props)
-            properties_dict.update(nested_props)
-        elif ftype == "array":
-            items = field_props.get("items", {})
-            if items.get("type") == "object":
-                nested_props = get_all_properties(items)
-                properties_dict.update(nested_props)
-            else:
-                if items.get("type") == "string" and items.get("format"):
-                    ftype = items["format"]
-                
-                properties_dict.update({field_name: ftype})
-        else:
-            if ftype == "string" and field_props.get("format"):
-                ftype = field_props["format"]
-            properties_dict.update({field_name: ftype})
-        
-    return properties_dict
 
 def get_custom_doc_size(
     schema: dict,

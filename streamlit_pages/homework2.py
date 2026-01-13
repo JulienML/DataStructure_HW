@@ -1,10 +1,11 @@
 import streamlit as st
 from pathlib import Path
 
-from filter import compute_filter_query_costs, compute_join_query_costs
-from loader import load_schemas_from_folder
-from size import get_all_properties
-from settings import NB_DOCS
+from queries.filter import compute_filter_query_costs
+from queries.join import compute_join_query_costs
+
+from utils.loader import load_schemas_from_folder
+from utils.size import get_all_properties
 
 st.set_page_config(page_title="Homework 2", layout="wide")
 
