@@ -106,3 +106,15 @@ result4 = compute_aggregate_query_costs(
 )
 
 pprint(result4)
+
+challenge_result = compute_join_query_costs(
+    database="db1",
+    collections=["Warehouse", "Stock"],
+    output_keys={"Warehouse": [], "Stock": ["IDP", "quantity"]},
+    join_keys={"Warehouse": "IDW", "Stock": "IDW"},
+    filter_keys={"Warehouse": ["IDW"], "Stock": []},
+    sharding={"Warehouse": True, "Stock": True},
+    sharding_keys={"Warehouse": "IDW", "Stock": "IDP"},
+)
+
+pprint(challenge_result)

@@ -177,18 +177,18 @@ with tab1:
     
     # Compute button
     if st.button("Compute Aggregate Query Costs", type="primary", key="aggregate_compute"):
-        if not output_keys1 or not output_keys2:
-            st.error("Please select at least one output key for each collection")
+        if not output_keys1 and not output_keys2:
+            st.error("Please select at least one output key for one collection")
         else:
             with st.spinner("Computing aggregate query costs..."):
                 try:
                     results = compute_aggregate_query_costs(
                         database=selected_db_join,
                         collections=[collection1, collection2],
-                        output_keys={collection1: output_keys1, collection2: output_keys2},
+                        output_keys={collection1: output_keys1 or [], collection2: output_keys2 or []},
                         join_keys={collection1: join_key1, collection2: join_key2},
                         group_by_keys={collection1: None, collection2: group_by_key2 if group_by_key2 != "" else None},
-                        filter_keys={collection1: filter_keys1, collection2: filter_keys2},
+                        filter_keys={collection1: filter_keys1 or [], collection2: filter_keys2 or []},
                         sharding={collection1: sharding1, collection2: sharding2},
                         sharding_keys={collection1: sharding_key1 if sharding1 else "", collection2: sharding_key2 if sharding2 else ""},
                         limit=limit
