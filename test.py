@@ -107,6 +107,12 @@ result4 = compute_aggregate_query_costs(
 
 pprint(result4)
 
+"""
+Compute the cost of this challenge query :
+SELECt S.IDP, S.quantity
+FROM Warehouse W JOIN Stock S ON W.IDW = S.IDW
+WHERE W.IDW = 1;
+"""
 challenge_result = compute_join_query_costs(
     database="db1",
     collections=["Warehouse", "Stock"],
