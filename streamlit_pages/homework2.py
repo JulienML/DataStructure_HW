@@ -166,13 +166,13 @@ with tab1:
                     with col2:
                         st.metric(
                             "Carbon Footprint",
-                            f"{results['carbon_footprint_gCO2']:.6f} gCO2"
+                            f"{results['carbon_footprint_kgCO2eq']:.6f} kgCO2eq"
                         )
                     
                     with col3:
                         st.metric(
                             "Price Cost",
-                            f"${results['price_cost_$']:.8f}"
+                            f"{results['price_cost_€']:.8f} €"
                         )
                     
                     # Show raw results in expander

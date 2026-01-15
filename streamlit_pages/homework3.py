@@ -269,7 +269,7 @@ with tab1:
                     with col3:
                         st.metric(
                             "Price Cost",
-                            f"€{results['price_cost_€']:.8f}"
+                            f"{results['price_cost_€']:.8f} €"
                         )
                     
                     # Show raw results in expander
